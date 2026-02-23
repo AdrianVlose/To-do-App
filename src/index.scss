@@ -1,0 +1,13 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+}
