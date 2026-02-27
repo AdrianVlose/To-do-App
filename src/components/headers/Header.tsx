@@ -39,7 +39,7 @@ export function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink to={isLoggedIn ? '/' : 'contact'} className='link'>
+          <NavLink to={!isLoggedIn ? '/' : 'contact'} className='link'>
             Contact
           </NavLink>
         </li>
