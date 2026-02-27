@@ -8,7 +8,6 @@ type TasksState = {
   tasks: Record<number, Task>;
   numberOfPages: number;
   isLoading: boolean;
-  error: string | null;
   isLoggedIn: boolean;
 };
 
@@ -16,7 +15,6 @@ const initialState: TasksState = {
   tasks: {},
   numberOfPages: 1,
   isLoading: false,
-  error: null,
   isLoggedIn: false,
 };
 
@@ -25,7 +23,11 @@ export const getTasks = createAsyncThunk(
   async (pageIndex: number) => {
     const startIndex = (pageIndex - 1) * 8;
     const endIndex = pageIndex * 8 - 1;
-    const { data: tasks, count } = await supabase
+    const {
+      data: tasks,
+      count,
+      error,
+    } = await supabase
       .from('task')
       .select('*', { count: 'exact' })
       .range(startIndex, endIndex)
@@ -33,6 +35,9 @@ export const getTasks = createAsyncThunk(
     let numberOfPages = 1;
     if (count) {
       numberOfPages = Math.ceil(count / 8);
+    }
+    if (error) {
+      console.log(error);
     }
     return {
       tasks,
@@ -44,7 +49,10 @@ export const getTasks = createAsyncThunk(
 export const insertTask = createAsyncThunk(
   'tasks/insert',
   async (task: TCreateTask) => {
-    const { data } = await supabase.from('task').insert(task).select();
+    const { data, error } = await supabase.from('task').insert(task).select();
+    if (error) {
+      console.log(error);
+    }
     return data;
   },
 );
@@ -52,11 +60,14 @@ export const insertTask = createAsyncThunk(
 export const updateIsTaskCompleted = createAsyncThunk(
   'tasks/updateIsCompleted',
   async (task: TaskToggleCompleted) => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('task')
       .update({ isCompleted: task.isCompleted })
       .eq('id', task.id)
       .select();
+    if (error) {
+      console.log(error);
+    }
     return data;
   },
 );
@@ -64,7 +75,14 @@ export const updateIsTaskCompleted = createAsyncThunk(
 export const deleteTask = createAsyncThunk(
   'tasks/deleteById',
   async (id: number) => {
-    const { data } = await supabase.from('task').delete().eq('id', id).select();
+    const { data, error } = await supabase
+      .from('task')
+      .delete()
+      .eq('id', id)
+      .select();
+    if (error) {
+      console.log(error);
+    }
     return data;
   },
 );
@@ -72,11 +90,14 @@ export const deleteTask = createAsyncThunk(
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (task: TUpdateTask) => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('task')
       .update(task)
       .eq('id', task.id)
       .select();
+    if (error) {
+      console.log(error);
+    }
     return data;
   },
 );
@@ -100,7 +121,6 @@ const tasksSlice = createSlice({
         state.numberOfPages = action.payload.numberOfPages;
       })
       .addCase(getTasks.rejected, (state) => {
-        state.error = 'Failed to fetch tasks';
         state.isLoading = false;
       })
       .addCase(insertTask.fulfilled, (state, action) => {
