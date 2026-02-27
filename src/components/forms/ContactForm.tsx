@@ -2,8 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Contact, type TContact } from '../../utils/types/baseForms';
 import { useForm } from 'react-hook-form';
 import './_baseForm.scss';
+import supabase from '../../utils/supabase';
+import { useNavigate } from 'react-router';
 
 export function ContactForm() {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     formState: { errors },
@@ -16,8 +19,16 @@ export function ContactForm() {
 
   const onSubmitContact = async (formValues: TContact) => {
     if (formValues) {
-      console.log(formValues);
+      const { error } = await supabase.from('contact').insert({
+        title: formValues.title,
+        description: formValues.description,
+      });
+
+      if (error) {
+        console.error(error);
+      }
       reset();
+      navigate('/dashboard');
     }
   };
 
