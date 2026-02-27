@@ -23,6 +23,15 @@ export function ContactForm() {
 
   return (
     <section className='form-component'>
+      <div className='form-header'>
+        <h2>
+          Support Hub
+          <span>
+            Have a question or feedback? Reach out and our team will assist you
+            shortly
+          </span>
+        </h2>
+      </div>
       <form onSubmit={handleSubmit(onSubmitContact)} className='form'>
         <h2>Contact Us</h2>
         <label className='input-label'>

@@ -29,4 +29,24 @@
       font-weight: $font-weight-normal;
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem 6rem 0.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+      padding-left: 0.5rem;
+      br {
+        display: block;
+      }
+    }
+  }
+
+  .disabled {
+    pointer-events: none;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 }

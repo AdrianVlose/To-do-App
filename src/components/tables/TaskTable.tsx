@@ -25,11 +25,16 @@ import {
   setPriorityInStorage,
   setStatusInStorage,
 } from '../../utils/sorting.ts';
+import { LoadingState } from '../loading/LoadingState.tsx';
 
 export function TaskTable() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const isLoggedIn = useSelector((state: RootState) => state.tasks.isLoggedIn);
+  const isLoadingState = useSelector(
+    (state: RootState) => state.tasks.isLoading,
+  );
 
   const category = useSelector((state: RootState) => state.filters.category);
   const priority = useSelector((state: RootState) => state.filters.priority);
@@ -131,96 +136,106 @@ export function TaskTable() {
 
   return (
     <section className='task-table'>
-      {filteredTasks.length === 0 ? (
-        <h2 className='empty-text'>No tasks to be displayed</h2>
-      ) : (
-        <table className='table'>
-          <thead className='table-header'>
-            <tr className='table-row'>
-              {TASK_TABLE_COLUMNS.map((column, index) => {
+      {!isLoadingState ? (
+        filteredTasks.length === 0 ? (
+          <h2 className='empty-text'>No tasks to be displayed</h2>
+        ) : (
+          <table className='table'>
+            <thead className='table-header'>
+              <tr className='table-row'>
+                {TASK_TABLE_COLUMNS.map((column, index) => {
+                  return (
+                    <th
+                      key={index}
+                      className={`${column}`}
+                      onClick={() => {
+                        if (column === 'Status' || column === 'Priority')
+                          handleSorting(column);
+                      }}
+                    >
+                      <p>
+                        {column}{' '}
+                        {column === 'Status' || column === 'Priority' ? (
+                          sortingIcon(column)
+                        ) : (
+                          <></>
+                        )}
+                      </p>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody className='table-body'>
+              {filteredTasks.map((task, index) => {
                 return (
-                  <th
-                    key={index}
-                    className={`${column}`}
-                    onClick={() => {
-                      if (column === 'Status' || column === 'Priority')
-                        handleSorting(column);
-                    }}
-                  >
-                    <p>
-                      {column}{' '}
-                      {column === 'Status' || column === 'Priority' ? (
-                        sortingIcon(column)
-                      ) : (
-                        <></>
-                      )}
-                    </p>
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody className='table-body'>
-            {filteredTasks.map((task, index) => {
-              return (
-                <tr key={index} className='table-row'>
-                  <td>
-                    <label>
-                      <input
-                        type='checkbox'
-                        checked={task.isCompleted}
-                        className='checkbox'
-                        onChange={() => {
-                          dispatch(
-                            updateIsTaskCompleted({
-                              isCompleted: !task.isCompleted,
-                              id: task.id,
-                            }),
-                          );
+                  <tr key={index} className='table-row'>
+                    <td>
+                      <label>
+                        <input
+                          type='checkbox'
+                          checked={task.isCompleted}
+                          className={
+                            isLoggedIn ? 'checkbox' : 'checkbox disabled'
+                          }
+                          onChange={() => {
+                            dispatch(
+                              updateIsTaskCompleted({
+                                isCompleted: !task.isCompleted,
+                                id: task.id,
+                              }),
+                            );
+                          }}
+                        />
+                      </label>
+                    </td>
+                    <td
+                      className={`title ${task.isCompleted ? 'completed' : ''}`}
+                    >
+                      {task.title}
+                    </td>
+                    <td>
+                      <p className={`label-${task.label}`}>
+                        {convertFirstLetterToUpperCase(task.label)}
+                      </p>
+                    </td>
+                    <td>
+                      <p className={`label-${task.priority}`}>
+                        {convertFirstLetterToUpperCase(task.priority)}
+                      </p>
+                    </td>
+                    <td>{convertFirstLetterToUpperCase(task.type)}</td>
+                    <td>{getDueDateStatus(task)}</td>
+                    <td>
+                      <Pencil
+                        color='#8e8e93'
+                        size={40}
+                        className={
+                          isLoggedIn ? 'edit-icon' : 'edit-icon disabled'
+                        }
+                        onClick={() => {
+                          navigate(`/edit/${task.id}`);
                         }}
                       />
-                    </label>
-                  </td>
-                  <td
-                    className={`title ${task.isCompleted ? 'completed' : ''}`}
-                  >
-                    {task.title}
-                  </td>
-                  <td>
-                    <p className={`label-${task.label}`}>
-                      {convertFirstLetterToUpperCase(task.label)}
-                    </p>
-                  </td>
-                  <td>
-                    <p className={`label-${task.priority}`}>
-                      {convertFirstLetterToUpperCase(task.priority)}
-                    </p>
-                  </td>
-                  <td>{convertFirstLetterToUpperCase(task.type)}</td>
-                  <td>{getDueDateStatus(task)}</td>
-                  <td>
-                    <Pencil
-                      color='#8e8e93'
-                      size={40}
-                      className='edit-icon'
-                      onClick={() => {
-                        navigate(`/edit/${task.id}`);
-                      }}
-                    />
-                    <Trash2
-                      color='#ff3b30'
-                      size={40}
-                      className='delete-icon'
-                      onClick={() => {
-                        dispatch(deleteTask(task.id));
-                      }}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                      <Trash2
+                        color='#ff3b30'
+                        size={40}
+                        className={
+                          isLoggedIn ? 'delete-icon' : 'delete-icon disabled'
+                        }
+                        onClick={() => {
+                          dispatch(deleteTask(task.id));
+                        }}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )
+      ) : (
+        <LoadingState />
       )}
     </section>
   );

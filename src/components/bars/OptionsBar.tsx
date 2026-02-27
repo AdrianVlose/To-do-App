@@ -10,8 +10,8 @@ import Select, { type SingleValue } from 'react-select';
 import './_options.scss';
 import { Plus } from 'lucide-react';
 import { Link } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { type AppDispatch } from '../../store/store.ts';
+import { useDispatch, useSelector } from 'react-redux';
+import { type AppDispatch, type RootState } from '../../store/store.ts';
 import { setCategory, setPriority, setType } from '../../store/filtersSlice.ts';
 
 export function OptionsBar() {
@@ -19,6 +19,7 @@ export function OptionsBar() {
   const [selectedCategory, setSelectedCategory] = useState(OPTIONS_CATEGORY[0]);
   const [selectedPriority, setSelectedPriority] = useState(OPTIONS_PRIORITY[0]);
   const [selectedType, setSelectedType] = useState(OPTIONS_TYPE[0]);
+  const isLoggedIn = useSelector((state: RootState) => state.tasks.isLoggedIn);
 
   const handleCategoryChange = (value: SingleValue<Option>) => {
     if (value) {
@@ -62,7 +63,7 @@ export function OptionsBar() {
           styles={colourStylesSelect}
         />
       </section>
-      <Link to='/add' className='add-task'>
+      <Link to='/add' className={isLoggedIn ? 'add-task' : 'add-task disabled'}>
         <Plus color='white' size={24} /> Add
       </Link>
     </div>

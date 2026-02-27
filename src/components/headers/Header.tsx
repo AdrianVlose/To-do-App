@@ -1,13 +1,16 @@
 import { Link, NavLink, useNavigate } from 'react-router';
 import './_header.scss';
 import { CopyCheck } from 'lucide-react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import supabase from '../../utils/supabase';
+import { type AppDispatch } from '../../store/store';
+import { setIsLoggedIn } from '../../store/tasksSlice';
 
 export function Header() {
   const isLoggedIn = useSelector((state: RootState) => state.tasks.isLoggedIn);
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSignOrLogin = async () => {
     if (isLoggedIn) {
@@ -15,6 +18,8 @@ export function Header() {
       if (error) {
         console.error(error);
       }
+
+      dispatch(setIsLoggedIn(false));
       navigate('/');
     } else {
       navigate('/login');
@@ -34,7 +39,7 @@ export function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink to='contact' className='link'>
+          <NavLink to={isLoggedIn ? '/' : 'contact'} className='link'>
             Contact
           </NavLink>
         </li>

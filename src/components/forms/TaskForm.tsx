@@ -67,6 +67,16 @@ export function TaskForm() {
 
   return (
     <section className='form-page'>
+      <div className='form-header'>
+        <h2>
+          {isEditPage ? 'Task Modification' : 'Task Creation'}
+          <span>
+            {isEditPage
+              ? 'Refine the details of your current assignment'
+              : 'Start organizing your day by adding a new entry'}
+          </span>
+        </h2>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className='form'>
         <h2>{isEditPage ? 'Edit Task' : 'Add Task'}</h2>
         <label className='input-label'>

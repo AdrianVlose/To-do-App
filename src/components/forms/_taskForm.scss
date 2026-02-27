@@ -1,10 +1,12 @@
 @use '../../styles/variables.scss' as *;
 
 .form-page {
-  min-height: 91.5vh;
+  height: calc(100dvh - 80px);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
+  padding-top: 4rem;
   background-color: $background;
   background-image:
     radial-gradient(
@@ -13,6 +15,26 @@
       transparent 40%
     ),
     radial-gradient(circle at 100% 80%, rgba(0, 128, 0, 0.15), transparent 40%);
+
+  .form-header {
+    width: 600px;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      padding: 0;
+      margin: 0;
+      font-size: 2.5rem;
+      color: $text-white;
+      font-weight: 500;
+
+      span {
+        display: block;
+        font-size: 1.1rem;
+        color: $text-third;
+        margin-top: 0.5rem;
+      }
+    }
+  }
 
   .form {
     background-color: $background-secondary;
@@ -24,6 +46,14 @@
     gap: 1rem;
     border: 1px solid #27272a;
     align-items: center;
+
+    @media (max-width: 380px) {
+      .form-categories,
+      .form-priorities,
+      .form-types {
+        grid-template-columns: 1fr;
+      }
+    }
 
     h2 {
       color: $text-white;
@@ -312,6 +342,101 @@
       &:hover {
         background-color: $hover-light;
         cursor: pointer;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: calc(100dvh - 70px);
+    padding: 2rem 1rem 6rem 1rem;
+    align-items: flex-start;
+
+    .form-header {
+      width: 100%;
+      padding: 0 1.5rem;
+
+      h2 {
+        font-size: 1.5rem;
+        padding-left: 0.5rem;
+        text-align: left;
+
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .form {
+      width: 100%;
+      max-width: 100%;
+      padding: 1.5rem 1rem;
+      gap: 1.5rem;
+
+      h2 {
+        font-size: 1.5rem;
+        padding-left: 0.5rem;
+      }
+
+      .form-categories {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
+
+      .form-priorities,
+      .form-types {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
+
+      .option-button {
+        height: 45px;
+        font-size: 0.9rem;
+        padding: 0 0.75rem;
+
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .selected-option {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+
+        .selected {
+          width: 100%;
+          text-align: center;
+          padding: 0.8rem 1rem;
+        }
+
+        .label-date {
+          width: 100%;
+          max-width: 100%;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+
+          .date-picker {
+            width: 100%;
+          }
+        }
+        .icon-delete {
+          align-self: flex-end;
+          margin-top: -0.5rem;
+        }
+      }
+
+      .input-label {
+        width: 100%;
+      }
+
+      .submit-button {
+        width: 100%;
+        margin-top: 1rem;
       }
     }
   }

@@ -60,6 +60,15 @@ export function LoginForm() {
 
   return (
     <section className='form-component'>
+      <div className='form-header'>
+        <h2>
+          Authentication
+          <span>
+            Securely access your workspace to continue managing your
+            productivity
+          </span>
+        </h2>
+      </div>
       <form onSubmit={handleSubmit(onSubmitContact)} className='form'>
         <h2>Get Started</h2>
         <label className='input-label'>
