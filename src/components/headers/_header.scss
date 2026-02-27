@@ -1,0 +1,74 @@
+@use '../../styles/variables.scss' as *;
+
+.header {
+  display: inline-flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $background-secondary;
+  height: 80px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: $text-white;
+
+    .icon-logo {
+      background-color: rgba(0, 122, 255, 0.75);
+      padding: 0.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 122, 255, 2);
+    }
+
+    h1 {
+      font-weight: $font-weight;
+    }
+  }
+
+  .links-list {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    list-style-type: none;
+
+    .link {
+      text-decoration: none;
+      font-size: $font-size;
+      font-weight: $font-weight;
+      color: $text-white;
+      padding: 0.5rem 1rem;
+      border-radius: $radius;
+      transition: all $transition-speed ease;
+      &.active {
+        background-color: $background-third;
+      }
+
+      &:hover {
+        background-color: $hover-light;
+      }
+    }
+  }
+
+  .link-to-login {
+    background-color: $background-buttons;
+    color: $text-white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 16px;
+    transition: all $transition-speed ease;
+    border: none;
+
+    &:hover {
+      background-color: $hover-buttons;
+    }
+  }
+}

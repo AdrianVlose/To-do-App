@@ -1,0 +1,80 @@
+@use '../../styles/variables.scss' as *;
+
+.landing-page {
+  height: calc(100vh - 80px);
+  background-color: $background;
+  background-image:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(30, 144, 255, 0.15),
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 50%, rgba(0, 128, 0, 0.15), transparent 40%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+
+  .main-text {
+    color: #ffffff;
+    font-size: 5rem;
+    background: linear-gradient(to right, #ffffff 30%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 10px rgba(255, 255, 255, 0.1));
+    margin: 0;
+    text-align: center;
+  }
+
+  .second-text {
+    color: $text-secondary;
+    font-size: 1.5rem;
+    max-width: 650px;
+    font-weight: 500;
+    opacity: 0.8;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .links {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 2rem;
+
+    .link-start {
+      background-color: $background-buttons;
+      color: $text-white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: 400;
+      border-radius: 16px;
+      transition: all $transition-speed ease;
+
+      &:hover {
+        background-color: $hover-buttons;
+      }
+    }
+
+    .link-demo {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: $text-white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: 400;
+      border-radius: 16px;
+      margin-right: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all $transition-speed ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}

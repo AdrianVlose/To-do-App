@@ -1,0 +1,318 @@
+@use '../../styles/variables.scss' as *;
+
+.form-page {
+  min-height: 91.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background;
+  background-image:
+    radial-gradient(
+      circle at 0% 20%,
+      rgba(30, 144, 255, 0.15),
+      transparent 40%
+    ),
+    radial-gradient(circle at 100% 80%, rgba(0, 128, 0, 0.15), transparent 40%);
+
+  .form {
+    background-color: $background-secondary;
+    padding: 1rem;
+    width: 600px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #27272a;
+    align-items: center;
+
+    h2 {
+      color: $text-white;
+      font-weight: $font-weight;
+      text-align: left;
+      font-size: 2rem;
+      padding-left: 1rem;
+    }
+
+    .form-categories {
+      display: grid;
+      width: 90%;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      .option-button {
+        height: 50px;
+        font-size: 1rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all $transition-speed ease;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 1rem;
+
+        &:hover {
+          filter: brightness(1.5);
+          cursor: pointer;
+        }
+        &.work {
+          background-color: $color-work-bg;
+          color: $color-work;
+        }
+        &.health {
+          background-color: $color-health-bg;
+          color: $color-health;
+        }
+        &.personal {
+          background-color: $color-personal-bg;
+          color: $color-personal;
+        }
+        &.shopping {
+          background-color: $color-shopping-bg;
+          color: $color-shopping;
+        }
+        &.social {
+          background-color: $color-social-bg;
+          color: $color-social;
+        }
+        &.other {
+          background-color: $color-other-bg;
+          color: $color-other;
+        }
+      }
+    }
+
+    .form-priorities {
+      display: grid;
+      width: 90%;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      .option-button {
+        height: 50px;
+        font-size: 1rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all $transition-speed ease;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 1rem;
+
+        &:hover {
+          filter: brightness(1.5);
+          cursor: pointer;
+        }
+
+        &.low {
+          background-color: $color-low-bg;
+          color: $color-low;
+        }
+
+        &.medium {
+          background-color: $color-medium-bg;
+          color: $color-medium;
+        }
+
+        &.high {
+          background-color: $color-high-bg;
+          color: $color-high;
+        }
+
+        &.urgent {
+          background-color: $color-urgent-bg;
+          color: $color-urgent;
+        }
+      }
+    }
+
+    .selected-option {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      height: 50px;
+      .selected {
+        font-size: 1rem;
+        padding: 1rem 3rem;
+        border-radius: $radius;
+
+        &:hover {
+          filter: brightness(1.5);
+        }
+        &.work {
+          background-color: $color-work-bg;
+          color: $color-work;
+        }
+        &.health {
+          background-color: $color-health-bg;
+          color: $color-health;
+        }
+        &.personal {
+          background-color: $color-personal-bg;
+          color: $color-personal;
+        }
+        &.shopping {
+          background-color: $color-shopping-bg;
+          color: $color-shopping;
+        }
+        &.social {
+          background-color: $color-social-bg;
+          color: $color-social;
+        }
+        &.other {
+          background-color: $color-other-bg;
+          color: $color-other;
+        }
+
+        &.low {
+          background-color: $color-low-bg;
+          color: $color-low;
+        }
+
+        &.medium {
+          background-color: $color-medium-bg;
+          color: $color-medium;
+        }
+
+        &.high {
+          background-color: $color-high-bg;
+          color: $color-high;
+        }
+
+        &.urgent {
+          background-color: $color-urgent-bg;
+          color: $color-urgent;
+        }
+
+        &.type {
+          background-color: $background-buttons;
+          color: $text-white;
+        }
+      }
+
+      .icon-delete {
+        background-color: rgba(142, 142, 147, 0.3);
+        padding: 8px;
+        border-radius: 30%;
+        transition: all $transition-speed ease;
+
+        &:hover {
+          background-color: rgba(142, 142, 147, 0.5);
+          cursor: pointer;
+        }
+      }
+
+      .label-date {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        max-width: 250px;
+        color: $text-third;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+
+        .date-picker {
+          color-scheme: dark;
+          width: 70%;
+
+          background-color: rgba(255, 255, 255, 0.1);
+          color: $text-white;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: $radius;
+          font-size: 1rem;
+          padding: 10px 14px;
+          cursor: pointer;
+          display: inline-flex;
+          justify-content: space-between;
+          font-family: inherit;
+        }
+      }
+    }
+
+    .form-types {
+      display: grid;
+      width: 90%;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      .option-button {
+        height: 50px;
+        font-size: 1rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all $transition-speed ease;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 1rem;
+        background-color: $background-buttons;
+        color: $text-white;
+
+        &:hover {
+          background-color: $hover-buttons;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .input-label {
+      align-self: center;
+      width: 90%;
+
+      input {
+        width: 100%;
+        height: 50px;
+        background-color: $background;
+        border-radius: 16px;
+        border: 1px solid #27272a;
+        padding-left: 1rem;
+        color: $text-white;
+        font-size: 1rem;
+      }
+
+      p {
+        color: $color-health;
+        font-size: $font-size;
+        font-weight: $font-weight-normal;
+        text-align: center;
+      }
+    }
+
+    .error-text {
+      color: $color-health;
+      font-size: $font-size;
+      font-weight: $font-weight-normal;
+      margin: 0;
+    }
+
+    .submit-button {
+      height: 50px;
+      font-size: 1.25rem;
+      color: $text-white;
+      background-color: $background-third;
+      border-radius: 16px;
+      width: 50%;
+      border: 1px solid #27272a;
+      transition: all $transition-speed ease;
+      align-self: center;
+
+      &:hover {
+        background-color: $hover-light;
+        cursor: pointer;
+      }
+    }
+  }
+}

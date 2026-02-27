@@ -1,0 +1,179 @@
+@use '../../styles/variables.scss' as *;
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .empty-text {
+    font-size: 2rem;
+    text-align: center;
+    color: $text-white;
+  }
+
+  .table {
+    align-self: center;
+    border-collapse: collapse;
+    width: 75%;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: $radius;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  .table-header {
+    .table-row {
+      th {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 12px 16px;
+
+        &.Status {
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(142, 142, 147, 0.3);
+          }
+        }
+
+        &.Priority {
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(142, 142, 147, 0.3);
+          }
+        }
+
+        p {
+          color: $text-secondary;
+          padding: 0;
+          text-align: center;
+          margin: 0;
+
+          display: inline-flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+  }
+  .table-body {
+    .table-row {
+      transition: all $transition-speed ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      .title {
+        color: $text-white;
+        font-weight: $font-weight;
+        font-size: 1.1rem;
+
+        &.completed {
+          text-decoration: line-through;
+          color: $text-secondary;
+        }
+      }
+      td {
+        color: $text-secondary;
+        font-weight: $font-weight-normal;
+        font-size: $font-size;
+        text-align: center;
+        padding: 1rem;
+
+        p {
+          font-size: $font-size;
+          padding: 4px 2px;
+          margin: 0;
+          width: auto;
+          border-radius: $radius;
+        }
+
+        &:last-child {
+          padding: 10px 0;
+          display: inline-flex;
+          justify-content: space-evenly;
+          align-items: center;
+          width: 100%;
+        }
+      }
+
+      .delete-icon {
+        background-color: rgba(255, 59, 48, 0.3);
+        padding: 8px;
+        border-radius: 50%;
+        opacity: 0;
+        transition: all $transition-speed ease;
+      }
+
+      .edit-icon {
+        background-color: rgba(142, 142, 147, 0.3);
+        padding: 8px;
+        border-radius: 30%;
+        opacity: 0;
+        transition: all $transition-speed ease;
+      }
+
+      &:hover {
+        background-color: $hover-light;
+
+        .delete-icon {
+          opacity: 1;
+
+          &:hover {
+            filter: brightness(1.5);
+          }
+        }
+
+        .edit-icon {
+          opacity: 1;
+          &:hover {
+            filter: brightness(1.5);
+          }
+        }
+      }
+    }
+  }
+
+  .label-work {
+    background-color: $color-work;
+    color: $text-white;
+  }
+  .label-personal {
+    background-color: $color-personal;
+    color: $text-white;
+  }
+  .label-shopping {
+    background-color: $color-shopping;
+    color: #1a1a1a;
+  }
+  .label-health {
+    background-color: $color-health;
+    color: $text-white;
+  }
+  .label-social {
+    background-color: $color-social;
+    color: $text-white;
+  }
+  .label-other {
+    background-color: $color-other;
+    color: $text-white;
+  }
+
+  .label-urgent {
+    background-color: $color-urgent;
+    color: $text-white;
+  }
+  .label-high {
+    background-color: $color-high;
+    color: $text-white;
+  }
+  .label-medium {
+    background-color: $color-medium;
+    color: #1a1a1a;
+  }
+  .label-low {
+    background-color: $color-low;
+    color: $text-white;
+  }
+}

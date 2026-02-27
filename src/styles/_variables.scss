@@ -1,18 +1,39 @@
-$primary-dark-bg-color: #000000;
-$primary-light-bg-color: #ffffff;
-$second-dark-bg-color: #050505;
-$second-light-bg-color: #f9fafb;
-$third-dark-bg-color: #1a1a1a;
-$third-light-bg-color: #f3f4f6;
-$text-label-color: #9ca3af;
-$text-nav-color: #f3f4f6;
-$text-main-color: #ffffff;
-$primary-border-color: #d1d5db;
-$second-border-color: #e5e7eb;
-$third-border-color: #1f2937;
-$grey-bg-color: #8c8c8c;
+$radius: 12px;
+$font-size: 16px;
+$font-weight: 500;
+$font-weight-normal: 400;
+$transition-speed: 0.2s;
 
-$rating-bad-color: #e74c3c;
-$rating-good-color: #2ecc71;
-$rating-ok-color: #e67e22;
-$gradient-label-rating: linear-gradient(135deg, #0f0f0f, #1c1c1e);
+$background: #09090b;
+$text-white: #f5f5f7;
+$text-secondary: #a1a1aa;
+$text-third: #71717a;
+$text-black: #86868b;
+$background-secondary: #18181b;
+$background-third: #3f3f46;
+$background-buttons: #007aff;
+$hover-buttons: #0059b3;
+
+$hover-light: #27272a;
+
+$color-work: #007aff;
+$color-work-bg: rgba(0, 122, 255, 0.25);
+$color-personal: #34c759;
+$color-personal-bg: rgba(52, 199, 89, 0.25);
+$color-shopping: #ffcc00;
+$color-shopping-bg: rgba(255, 205, 0, 0.25);
+$color-health: #ff3b30;
+$color-health-bg: rgba(255, 59, 48, 0.25);
+$color-social: #af52de;
+$color-social-bg: rgba(175, 82, 222, 0.25);
+$color-other: #8e8e93;
+$color-other-bg: rgba(142, 142, 147, 0.25);
+
+$color-urgent: #ff3b30;
+$color-urgent-bg: rgba(255, 59, 48, 0.25);
+$color-high: #ff9500;
+$color-high-bg: rgba(255, 149, 0, 0.25);
+$color-medium: #ffcc00;
+$color-medium-bg: rgba(255, 205, 0, 0.25);
+$color-low: #007aff;
+$color-low-bg: rgba(0, 122, 255, 0.25);

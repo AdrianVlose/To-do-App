@@ -1,9 +1,11 @@
-import { TaskTable } from '../tables/TaskTable.tsx';
+import { Outlet } from 'react-router';
+import { Header } from '../headers/Header.tsx';
 
 export function Layout() {
   return (
     <>
-      <TaskTable />
+      <Header />
+      <Outlet />
     </>
   );
 }

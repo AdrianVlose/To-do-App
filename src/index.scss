@@ -1,3 +1,5 @@
+@use '../src/styles/variables.scss' as *;
+
 *,
 *::before,
 *::after {
@@ -10,4 +12,11 @@
 
 body {
   margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+#root {
+  width: 100%;
+  background-color: $background;
+  min-height: 100dvh;
 }
